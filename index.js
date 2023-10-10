@@ -33,7 +33,15 @@ function writeToFile(fileName, data) {
     });
   }
 // function to initialize program
-function init() {}
-
+async function init() {
+    try {
+      const userResponses = await inquirer.prompt(questions);
+      const markdown = generateMarkdown(userResponses);
+      writeToFile("README.md", markdown);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  
 // function call to initialize program
 init();
